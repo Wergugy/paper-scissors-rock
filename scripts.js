@@ -34,10 +34,12 @@ function playRound() {
             case 'scissors':
                 //code
                 alert('You win! Rock beats Scissors!')
+                playerScore = playerScore++;
                 break;
             case 'paper':
                 //code
                 alert('You lose! Paper beats Rock!')
+                npcScore = npcScore++;
                 break;
             case 'rock':
                 //code
@@ -54,10 +56,12 @@ function playRound() {
             case 'paper':
                 //code
                 alert('You win! Scissors beats Paper!')
+                playerScore = playerScore++;
                 break;
             case 'rock':
                 //code
                 alert('You lose! Rock beats Scissors!')
+                npcScore = npcScore++;
                 break;
         }
     }
@@ -66,6 +70,7 @@ function playRound() {
             case 'scissors':
                 //code
                 alert('You lose! Scissors beats Paper!')
+                npcScore = npcScore++;
                 break;
             case 'paper':
                 //code
@@ -74,13 +79,15 @@ function playRound() {
             case 'rock':
                 //code
                 alert('You win! Paper beats Rock!')
+                playerScore = playerScore++;
                 break;
         }
     }
+    return 
 }
 
-let playerScore = 0
-let npcScore = 0
+let playerScore = 0;
+let npcScore = 0;
 
 function game() {
     //calls the playRound function 5 times and keeps track of the outcome
@@ -90,3 +97,5 @@ function game() {
 }
 
 
+//console.log(playerScore)
+//console.log(npcScore)
