@@ -13,7 +13,10 @@ function npcChoice() {
 function playerChoice() {
     let choice = prompt('Choose your weapon!',)
     choice = choice.toLowerCase()
-    if (choice != 'rock' && choice != 'scissors' && choice != 'paper') { alert('You need to pick either rock, paper, or scissors!') }
+    if (choice != 'rock' && choice != 'scissors' && choice != 'paper') { 
+        alert('You need to pick rock, paper, or scissors!\nThis rounds choice will be random.') 
+        return npcChoice()
+    }
     else { return choice }
 }
 
@@ -26,7 +29,7 @@ function playRound() {
     console.log(player)
     console.log(npc)
 
-    if (player = 'rock') {
+    if (player === 'rock') {
         switch (npc) {
             case 'scissors':
                 alert('You win! Rock beats Scissors!')
@@ -39,7 +42,7 @@ function playRound() {
                 break;
         }
     }
-    else if (player = 'scissors') {
+    else if (player === 'scissors') {
         switch (npc) {
             case 'scissors':
                 alert('Its a Tie!')
@@ -66,7 +69,7 @@ function playRound() {
         }
     }
 }
-var  playerScore = 0;
+var playerScore = 0;
 var npcScore = 0;
 
 function game() {
@@ -78,6 +81,18 @@ function game() {
     for (let round = 0; round < 5; round++) {
         playRound()
     }
+
+    findWinner()
 }
 
-
+function findWinner() {
+    if (playerScore > npcScore) {
+        alert('You win the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
+    }
+    else if (npcScore > playerScore) {
+        alert('You lose the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
+    }
+    else {
+        alert('You tied the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
+    }
+}
