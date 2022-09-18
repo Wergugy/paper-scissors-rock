@@ -95,4 +95,6 @@ function findWinner() {
     else {
         alert('You tied the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
     }
+    npcScore = 0,
+    playerScore = 0;
 }
