@@ -10,62 +10,6 @@ function npcChoice() {
     else { return choice = 'paper'; }
 }
 
-function playerChoice() {
-    let choice = prompt('Choose your weapon!',)
-    choice = choice.toLowerCase()
-    if (choice != 'rock' && choice != 'scissors' && choice != 'paper') { 
-        alert('You need to pick rock, paper, or scissors!\nThis rounds choice will be random.') 
-        return npcChoice()
-    }
-    else { return choice }
-}
-
-function playRound() {
-    let player = playerChoice()
-    let npc = npcChoice()
-    console.log(player)
-    console.log(npc)
-
-    if (player === 'rock') {
-        switch (npc) {
-            case 'scissors':
-                alert('You win! Rock beats Scissors!')
-                return playerScore++;
-            case 'paper':
-                alert('You lose! Paper beats Rock!')
-                return npcScore++;
-            case 'rock':
-                alert('Its a Tie!')
-                break;
-        }
-    }
-    else if (player === 'scissors') {
-        switch (npc) {
-            case 'scissors':
-                alert('Its a Tie!')
-                break;
-            case 'paper':
-                alert('You win! Scissors beats Paper!')
-                return playerScore++;
-            case 'rock':
-                alert('You lose! Rock beats Scissors!')
-                return npcScore++;
-        }
-    }
-    else { //player === paper
-        switch (npc) { 
-            case 'scissors':
-                alert('You lose! Scissors beats Paper!')
-                return npcScore++;
-            case 'paper':
-                alert('Its a Tie!')
-                break;
-            case 'rock':
-                alert('You win! Paper beats Rock!')
-                return playerScore++;
-        }
-    }
-}
 var playerScore = 0;
 var npcScore = 0;
 
@@ -94,13 +38,13 @@ function findWinner() {
 function playRock() {
     switch (npcChoice()) {
         case 'scissors':
-            alert('You win! Rock beats Scissors!')
+            dialog.textContent = 'You win! Rock beats Scissors!';
             return playerScore++;
         case 'paper':
-            alert('You lose! Paper beats Rock!')
+            dialog.textContent = 'You lose! Paper beats Rock!';
             return npcScore++;
         case 'rock':
-            alert('Its a Tie!')
+            dialog.textContent = 'Its a Tie!';
             break;
     }
 }
@@ -108,13 +52,13 @@ function playRock() {
 function playScissors() {
     switch (npcChoice()) {
         case 'scissors':
-            alert('Its a Tie!')
+            dialog.textContent = 'Its a Tie!';
             break;
         case 'paper':
-            alert('You win! Scissors beats Paper!')
+            dialog.textContent = 'You win! Scissors beats Paper!';
             return playerScore++;
         case 'rock':
-            alert('You lose! Rock beats Scissors!')
+            dialog.textContent = 'You lose! Rock beats Scissors!';
             return npcScore++;
     }
 }
@@ -122,13 +66,13 @@ function playScissors() {
 function playPaper() {
     switch (npcChoice()) { 
         case 'scissors':
-            alert('You lose! Scissors beats Paper!')
+            dialog.textContent = 'You lose! Scissors beats Paper!';
             return npcScore++;
         case 'paper':
-            alert('Its a Tie!')
+            dialog.textContent = 'Its a Tie!';
             break;
         case 'rock':
-            alert('You win! Paper beats Rock!')
+            dialog.textContent = 'You win! Paper beats Rock!';
             return playerScore++;
     }
 }
@@ -138,8 +82,17 @@ function selection(e) {
     else if (e.target.alt === 'Scissors') playScissors(); //return console.log('scissors');
     else if(e.target.alt === 'Paper') playPaper();//return console.log('paper');
     else return;
+    scoreNpc.textContent = `${npcScore}`;
+    scorePlayer.textContent = `${playerScore}`;
 }
+const scoreBoard = document.querySelector('.dialog');
+const dialog = document.createElement('div');
+dialog.classList.toggle('dialogContent');
+dialog.textContent = 'test'
+scoreBoard.appendChild(dialog);
 
+const scoreNpc = document.querySelector('#npc');
+const scorePlayer = document.querySelector('#player');
 
 const options = document.querySelectorAll('.options');
 let choice = options.forEach(addEventListener('click',selection));
