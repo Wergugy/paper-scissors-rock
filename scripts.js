@@ -13,26 +13,25 @@ function npcChoice() {
 var playerScore = 0;
 var npcScore = 0;
 
-function game() {
-    for (let round = 0; round < 5; round++) {
-        playRound()
-    }
-
-    findWinner()
-}
-
 function findWinner() {
-    if (playerScore > npcScore) {
-        alert('You win the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
-    }
-    else if (npcScore > playerScore) {
-        alert('You lose the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
-    }
-    else {
-        alert('You tied the game! \nPlayer = ' + playerScore + '\nNPC = ' + npcScore)
-    }
-    npcScore = 0,
-    playerScore = 0;
+    if ((playerScore === 5) || (npcScore === 5)) {
+        if (playerScore > npcScore) {
+            dialog.textContent = 'You win the game!';
+            npcScore = 0;
+            playerScore = 0;
+        }
+        else if (npcScore > playerScore) {
+            dialog.textContent = 'You lose the game!';
+            npcScore = 0;
+            playerScore = 0;
+        }
+        else if (npcScore === playerScore) {
+            dialog.textContent = 'You tied the game!';
+            npcScore = 0;
+            playerScore = 0;
+        }
+    } 
+    else return;
 }
 
 function playRock() {
@@ -64,7 +63,7 @@ function playScissors() {
 }
 
 function playPaper() {
-    switch (npcChoice()) { 
+    switch (npcChoice()) {
         case 'scissors':
             dialog.textContent = 'You lose! Scissors beats Paper!';
             return npcScore++;
@@ -80,20 +79,21 @@ function playPaper() {
 function selection(e) {
     if (e.target.alt === 'Rock') playRock(); //return console.log('rock');
     else if (e.target.alt === 'Scissors') playScissors(); //return console.log('scissors');
-    else if(e.target.alt === 'Paper') playPaper();//return console.log('paper');
+    else if (e.target.alt === 'Paper') playPaper();//return console.log('paper');
     else return;
     scoreNpc.textContent = `${npcScore}`;
     scorePlayer.textContent = `${playerScore}`;
+    findWinner()
 }
 const scoreBoard = document.querySelector('.dialog');
 const dialog = document.createElement('div');
 dialog.classList.toggle('dialogContent');
-dialog.textContent = 'test'
+dialog.textContent = 'Pick a weapon to start the game.'
 scoreBoard.appendChild(dialog);
 
 const scoreNpc = document.querySelector('#npc');
 const scorePlayer = document.querySelector('#player');
 
 const options = document.querySelectorAll('.options');
-let choice = options.forEach(addEventListener('click',selection));
+let choice = options.forEach(addEventListener('click', selection));
 console.log(choice);

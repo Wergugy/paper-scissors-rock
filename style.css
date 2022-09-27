@@ -84,4 +84,5 @@ header {
 .dialogContent {
     font-size: 27px;
     font-weight: 500;
+    max-width: 80%;
 }
