@@ -21,9 +21,6 @@ function playerChoice() {
 }
 
 function playRound() {
-    //compares the two inputs from the npc and the player
-    //declares who won the round 
-    //returns a score somehow 
     let player = playerChoice()
     let npc = npcChoice()
     console.log(player)
@@ -55,7 +52,7 @@ function playRound() {
                 return npcScore++;
         }
     }
-    else { //player choice is paper
+    else { //player === paper
         switch (npc) { 
             case 'scissors':
                 alert('You lose! Scissors beats Paper!')
@@ -73,11 +70,6 @@ var playerScore = 0;
 var npcScore = 0;
 
 function game() {
-    //calls the playRound function 5 times 
-    //then reveals the winner by comparing the final results
-    //keeps track of the outcome
-    //uses a loop to keep the game going 
-    
     for (let round = 0; round < 5; round++) {
         playRound()
     }
@@ -98,3 +90,57 @@ function findWinner() {
     npcScore = 0,
     playerScore = 0;
 }
+
+function playRock() {
+    switch (npcChoice()) {
+        case 'scissors':
+            alert('You win! Rock beats Scissors!')
+            return playerScore++;
+        case 'paper':
+            alert('You lose! Paper beats Rock!')
+            return npcScore++;
+        case 'rock':
+            alert('Its a Tie!')
+            break;
+    }
+}
+
+function playScissors() {
+    switch (npcChoice()) {
+        case 'scissors':
+            alert('Its a Tie!')
+            break;
+        case 'paper':
+            alert('You win! Scissors beats Paper!')
+            return playerScore++;
+        case 'rock':
+            alert('You lose! Rock beats Scissors!')
+            return npcScore++;
+    }
+}
+
+function playPaper() {
+    switch (npcChoice()) { 
+        case 'scissors':
+            alert('You lose! Scissors beats Paper!')
+            return npcScore++;
+        case 'paper':
+            alert('Its a Tie!')
+            break;
+        case 'rock':
+            alert('You win! Paper beats Rock!')
+            return playerScore++;
+    }
+}
+
+function selection(e) {
+    if (e.target.alt === 'Rock') playRock(); //return console.log('rock');
+    else if (e.target.alt === 'Scissors') playScissors(); //return console.log('scissors');
+    else if(e.target.alt === 'Paper') playPaper();//return console.log('paper');
+    else return;
+}
+
+
+const options = document.querySelectorAll('.options');
+let choice = options.forEach(addEventListener('click',selection));
+console.log(choice);
